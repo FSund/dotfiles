@@ -13,6 +13,7 @@
 exec pa-applet # PulseAudio applet
 exec kupfer
 exec mate-settings-daemon
+exec mouseaccfix
 
 # Set default mod key (Mod4 == Windows key)
 set $mod Mod4
@@ -36,11 +37,21 @@ new_window normal 4
 bindsym Control+Mod1+Left workspace prev_on_output
 bindsym Control+Mod1+Right workspace next_on_output
 
+# Change focus
+bindsym Mod1+Tab focus right
+bindsym Mod1+shift+Tab focus left
+bindsym $mod+Tab focus right
+bindsym $mod+shift+Tab focus left
+
 # Switch screen
-bindsym $mod+x workspace right
+bindsym $mod+x focus output right
+#bindsyn $mod+x move output right # doesn't work
 
 # Lock screen using Ctrl+Alt+L
 bindsym Control+Mod1+l exec i3lock -c 073642
+
+# Kill focused window
+bindsym Mod1+F4 kill
 #####################################################################
 
 # Use Mouse+$mod to drag floating windows to their wanted position
@@ -171,6 +182,7 @@ bindsym $mod+r mode "resize"
 bar {
         status_command i3status
 #	tray_output primary # System tray on primary screen
+	tray_output DVI-I-2
 	font pango:DejaVu Sans Mono 9
 
         colors {
@@ -187,4 +199,5 @@ bar {
 # class                 border  backgr. text    indicator
 client.focused          #859900 #859900 #fdf6e3 #2e9ef4
 client.focused_inactive #268bd2 #268bd2 #fdf6e3 #484e50
-client.unfocused        #333333 #93a1a1 #fdf6e3 #292d2e
+#client.unfocused        #333333 #93a1a1 #fdf6e3 #292d2e
+client.unfocused        #586e75 #586e75 #fdf6e3 #292d2e
