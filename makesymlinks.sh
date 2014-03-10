@@ -8,7 +8,7 @@
 
 dir=~/dotfiles                    # dotfiles directory
 olddir=~/dotfiles_old             # old dotfiles backup directory
-files="i3/config i3status.conf"    # list of files/folders to symlink in homedir
+files="i3/config i3status.conf nanorc"    # list of files/folders to symlink in homedir
 
 ##########
 
