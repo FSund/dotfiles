@@ -10,12 +10,13 @@
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
 # Start programs
-exec pa-applet # PulseAudio applet
-exec kupfer
-exec mate-settings-daemon
-exec mouseaccfix
-exec nitrogen --restore
-exec dropbox start
+exec --no-startup-id pa-applet # PulseAudio applet
+exec --no-startup-id kupfer
+exec --no-startup-id mate-settings-daemon
+exec --no-startup-id mouseaccfix
+exec --no-startup-id nitrogen --restore
+exec --no-startup-id dropbox start
+exec --no-startup-id nm-applet
 
 # Set default mod key (Mod4 == Windows key)
 set $mod Mod4
@@ -29,8 +30,6 @@ set $mod Mod4
 # chose a FreeType font, such as:
 font pango:DejaVu Sans Mono 9
 
-###################################################################
-## Filip settings #################################################
 # Border style for new windows (last number is border width in pixels)
 #new_window pixel 2
 new_window normal 4
@@ -39,16 +38,17 @@ new_window normal 4
 bindsym Control+Mod1+Left workspace prev_on_output
 bindsym Control+Mod1+Right workspace next_on_output
 
-# Change focus
-bindsym Mod1+Tab focus right
-bindsym Mod1+shift+Tab focus left
-bindsym $mod+Tab focus right
-bindsym $mod+shift+Tab focus left
+# Page Up = keycode 112, keysym "Prior", 0xff55
+# Page Down = keycode 117, keysym "Next", 0xff56
 
-# Switch screen
+# Switch focus to other screen
 bindsym $mod+x focus output right
-#bindsyn $mod+shift+x move output right # doesn't work
-bindsym $mod+q focus output right
+bindcode $mod+112 focus output left
+bindcode $mod+117 focus output right
+
+# Move container to other screen
+bindcode $mod+Shift+112 move container to output left; focus output left
+bindcode $mod+Shift+117 move container to output right; focus output right
 
 # Move workspace to other monitor
 bindsym $mod+shift+x move workspace to output left
@@ -59,16 +59,11 @@ bindsym Control+Mod1+l exec i3lock -c 073642
 # Kill focused window
 bindsym Mod1+F4 kill
 
-# Alternate full screen window
-bindsym $mod+z fullscreen
-#####################################################################
-
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
-#bindsym $mod+Return exec mate-terminal
 bindsym Ctrl+Mod1+t exec i3-sensible-terminal
 
 # kill focused window
@@ -79,7 +74,7 @@ bindsym $mod+d exec dmenu_run
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
-# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+#bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # change focus
 bindsym $mod+j focus left
