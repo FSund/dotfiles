@@ -38,6 +38,10 @@ new_window normal 4
 bindsym Control+Mod1+Left workspace prev_on_output
 bindsym Control+Mod1+Right workspace next_on_output
 
+# Move container to next/prev workspace on this screen, let focus follow container
+bindsym Control+Mod1+Shift+Left move container to workspace prev_on_output; workspace prev_on_output
+bindsym Control+Mod1+Shift+Right move container to workspace next_on_output; workspace next_on_output
+
 # Page Up = keycode 112, keysym "Prior", 0xff55
 # Page Down = keycode 117, keysym "Next", 0xff56
 
@@ -46,7 +50,7 @@ bindsym $mod+x focus output right
 bindcode $mod+112 focus output left
 bindcode $mod+117 focus output right
 
-# Move container to other screen
+# Move container to other screen, let focus follow container
 bindcode $mod+Shift+112 move container to output left; focus output left
 bindcode $mod+Shift+117 move container to output right; focus output right
 
