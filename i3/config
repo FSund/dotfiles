@@ -18,6 +18,9 @@ exec --no-startup-id nitrogen --restore
 exec --no-startup-id dropbox start
 exec --no-startup-id nm-applet
 
+# Lock screen after 10 minutes of inactivity
+exec "xautolock -time 10 -locker i3lock-blur"
+
 # Set default mod key (Mod4 == Windows key)
 set $mod Mod4
 
@@ -33,6 +36,12 @@ font pango:DejaVu Sans Mono 9
 # Border style for new windows (last number is border width in pixels)
 #new_window pixel 2
 new_window normal 4
+
+# Float by default
+# Matplotlib figures
+for_window [title="Figure\ *"] floating enable
+# Thunar windows
+for_window [class="Thunar"] floating enable
 
 # Move to next/prev workspace on this screen
 bindsym Control+Mod1+Left workspace prev_on_output
@@ -58,7 +67,8 @@ bindcode $mod+Shift+117 move container to output right; focus output right
 bindsym $mod+shift+x move workspace to output left
 
 # Lock screen using Ctrl+Alt+L
-bindsym Control+Mod1+l exec i3lock -c 073642
+#bindsym Control+Mod1+l exec i3lock -c 073642
+bindsym Control+Mod1+l exec i3lock-blur
 
 # Kill focused window
 bindsym Mod1+F4 kill
