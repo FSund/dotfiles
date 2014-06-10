@@ -13,13 +13,14 @@
 exec --no-startup-id pa-applet # PulseAudio applet
 exec --no-startup-id kupfer
 exec --no-startup-id mate-settings-daemon
-exec --no-startup-id mouseaccfix
 exec --no-startup-id nitrogen --restore
 exec --no-startup-id dropbox start
 exec --no-startup-id nm-applet
+exec --no-startup-id mouseaccfix
 
 # Lock screen after 10 minutes of inactivity
-exec "xautolock -time 10 -locker i3lock-blur"
+# Remember to disable regular screensaver..?
+exec --no-startup-id "xautolock -time 10 -locker i3lock-blur"
 
 # Set default mod key (Mod4 == Windows key)
 set $mod Mod4
@@ -37,11 +38,36 @@ font pango:DejaVu Sans Mono 9
 #new_window pixel 2
 new_window normal 4
 
-# Float by default
-# Matplotlib figures
+## Custom program settings ##
+# Matplotlib figures float by default
 for_window [title="Figure\ *"] floating enable
-# Thunar windows
+
+# Chrome no border (removed chrome borders, so reapplied this)
+#for_window [class="(?i)google-chrome-stable"] border none
+
+# Floating default programs
+for_window [class="(?i)thunderbird"] floating enable
 for_window [class="Thunar"] floating enable
+for_window [class="(?i)Y-PPA-Manager"] floating enable
+for_window [class="(?i)mate-calc"] floating enable
+for_window [class="(?i)steam"] floating enable
+for_window [class="(?i)tilda"] floating enable
+for_window [class="Google-chrome" instance="crx_nckgahadagoaajjgafhacjanaoiihapd"] floating enable
+for_window [title="Hangouts"] floating enable
+for_window [class="(?i)mate-system-monitor"] floating enable
+
+# Scratchpad terminal
+exec --no-startup-id mate-terminal -t "Life is beautiful." --window-with-profile=Solarized
+for_window [instance="mate-terminal" title="Life"] move scratchpad
+# for_window [instance="mate-terminal" title="Life"] move scratchpad
+
+# Show scratchpad terminal
+bindsym $mod+F11 [instance="mate-terminal" title="Life"] scratchpad show
+
+# Scratchpad browser (Chromium)
+exec --no-startup-id chromium-browser
+#for_window [instance="(?i)chromium-browser"] move scratchpad
+bindsym $mod+F10 [instance="(?i)chromium-browser"] scratchpad show
 
 # Move to next/prev workspace on this screen
 bindsym Control+Mod1+Left workspace prev_on_output
@@ -66,9 +92,16 @@ bindcode $mod+Shift+117 move container to output right; focus output right
 # Move workspace to other monitor
 bindsym $mod+shift+x move workspace to output left
 
+# Move current window to scratchpad
+bindsym $mod+Shift+F12 move scratchpad
+
+# Show first scratchpad window
+bindsym $mod+F12 scratchpad show
+
 # Lock screen using Ctrl+Alt+L
 #bindsym Control+Mod1+l exec i3lock -c 073642
-bindsym Control+Mod1+l exec i3lock-blur
+#bindsym Control+Mod1+l exec i3lock-blur
+bindsym Control+Mod1+l exec xautolock -locknow
 
 # Kill focused window
 bindsym Mod1+F4 kill
@@ -217,11 +250,7 @@ bar {
 
 # more solarized
 # class                 border  backgr. text    indicator
-client.focused          #859900 #859900 #fdf6e3 #2e9ef4
-client.focused_inactive #268bd2 #268bd2 #fdf6e3 #484e50
-#client.unfocused        #333333 #93a1a1 #fdf6e3 #292d2e
-#client.unfocused        #586e75 #586e75 #fdf6e3 #292d2e
-#client.unfocused        #000000 #586e75 #fdf6e3 #292d2e
-#client.unfocused        #000000 #657b83 #fdf6e3 #292d2e
-client.unfocused        #000000 #405156 #fdf6e3 #292d2e
-
+client.focused          #859900 #859900 #fdf6e3 #268bd2
+client.focused_inactive #268bd2 #268bd2 #fdf6e3 #002b36
+client.unfocused        #000000 #073642 #eee8d5 #002b36
+#client.unfocused        #000000 #002b36 #839496 #002b36
