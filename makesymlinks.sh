@@ -9,7 +9,7 @@
 dir=~/dotfiles                    # dotfiles directory
 olddir=~/dotfiles_old             # old dotfiles backup directory
 # list of files/folders to symlink in homedir
-files="config/i3/config Xresources config/fontconfig/local.conf profile bashrc bash_aliases inputrc nanorc"
+files="config/i3/config Xresources config/fontconfig/local.conf profile bashrc bash_aliases inputrc nanorc xsessionrc"
 
 ##########
 

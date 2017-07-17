@@ -11,12 +11,9 @@
 
 set $mod Mod4
 
-# nicer font rendering
-#exec --no-startup-id gnome-settings-daemon
-#exec --no-startup-id mate-settings-daemon
-
 # other apps
 exec --no-startup-id kupfer --no-splash
+exec --no-startup-id nitrogen --restore # wallpaper
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -164,18 +161,34 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
         status_command i3status
+
+        colors {
+                # solarized
+                background #073642
+                statusline #eee8d5
+                focused_workspace #cb4b16 #cb4b16 #eee8d5
+                active_workspace #cb4b16 #cb4b16 #eee8d5
+                inactive_workspace #b58900 #b58900 #eee8d5
+        }
 }
+
+# Solarized theme
+# class                 border  backgr. text    indicator
+client.focused          #859900 #859900 #fdf6e3 #268bd2
+client.focused_inactive #268bd2 #268bd2 #fdf6e3 #002b36
+client.unfocused        #000000 #073642 #eee8d5 #002b36
+
 
 ### i3-gaps stuff ###
 
-# Necessary for i3-gaps to work properly (pixel can be any value)
-for_window [class="^.*"] border pixel 3
+#Gaps will only work correctly if you disable window titlebars entirely. Unfortunately this is necessary due to the way i3 creates such bars on windows. You can disable them via for_window [class="^.*"] border pixel 0 in your config. You can also use any non-zero value as long as you only use pixel-style borders.
+for_window [class="^.*"] border pixel 2
 
 # Smart Gaps
-#smart_gaps on
+smart_gaps on
 
 # Smart Borders
-smart_borders on
+#smart_borders on
 
 # Some color adjustments
 client.focused_inactive #000000 #000000 #000000 #000000 #000000
