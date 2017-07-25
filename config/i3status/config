@@ -1,0 +1,35 @@
+# i3status configuration file.
+# see "man i3status" for documentation.
+
+# It is important that this file is edited as UTF-8.
+# The following line should contain a sharp s:
+# ß
+# If the above line is not correctly displayed, fix your editor first!
+
+general {
+    colors = true
+    interval = 5
+    output_format = "i3bar"
+}
+
+order += "disk /"
+order += "cpu_usage"
+#order += "tztime local"
+
+disk "/" {
+        format = "HD %avail (%percentage_free%) / %total"
+}
+
+cpu_usage {
+        format = "CPU: %usage"
+}
+
+tztime local {
+        format = "%Y-%m-%d %H:%M:%S"
+}
+
+load {
+        format = "%1min"
+}
+
+# could use this somehow to get ram usage: awk '/MemTotal/ {memtotal=$2}; /MemAvailable/ {memavail=$2}; END { printf("%.0f", (100- (memavail / memtotal * 100))) }' /proc/meminfo
