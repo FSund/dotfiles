@@ -204,7 +204,7 @@ client.focused_inactive #000000 #000000 #000000 #000000 #000000
 client.unfocused        #000000 #000000 #000000 #000000 #000000
 
 # Set inner/outer gaps
-gaps inner 12
+gaps inner 8
 gaps outer -2
 
 # Gaps mode
